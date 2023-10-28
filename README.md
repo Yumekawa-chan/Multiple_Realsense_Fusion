@@ -1,6 +1,6 @@
 # Multiple_Realsense_Fusion
 
-Combine multiple point clouds from multiple Realsense devices through external calibration. This source code is based on the [Proceedings of the Seventh IEEE International Conference on Computer Vision](https://ieeexplore.ieee.org/document/791183).
+Combine multiple point clouds from multiple Realsense devices through external calibration. This source code is based on the [Flexible camera calibration by viewing a plane from unknown orientations](https://ieeexplore.ieee.org/document/791289).
 
 ## Procedure
 
