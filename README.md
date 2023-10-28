@@ -32,5 +32,7 @@ Combine multiple point clouds from multiple Realsense devices through external c
 
 ## Example of result
 
-It is recommended to adjust minor misalignments using ICP (Iterative Closest Point) matching.
-<img src="assets\images\result_sample.png" width = 500 title="Example of result">
+- Without ICP
+  <img src="assets\images\result_sample.png" width = 500 title="Example of result">
+- With ICP
+  <img src="assets\images\result_sample2.png" width = 500 title="Example of result2">

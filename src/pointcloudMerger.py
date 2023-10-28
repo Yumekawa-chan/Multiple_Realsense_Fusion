@@ -33,6 +33,28 @@ def get_transformation_matrix(R, T):
     return transformation_matrix
 
 
+def execute_icp(source, target):
+    print("Apply initial alignment")
+    trans_init = o3d.pipelines.registration.registration_icp(
+        source, target, max_correspondence_distance=0.3,
+        # init=o3d.geometry.Tensor.identity(4, dtype=o3d.core.Dtype.Float64),
+        estimation_method=o3d.pipelines.registration.TransformationEstimationPointToPoint()
+    ).transformation
+    print(trans_init)
+
+    print("Apply ICP")
+    reg_p2p = o3d.pipelines.registration.registration_icp(
+        source, target, max_correspondence_distance=0.3,
+        init=trans_init,
+        estimation_method=o3d.pipelines.registration.TransformationEstimationPointToPoint()
+    )
+    transformation_icp = reg_p2p.transformation
+    print(transformation_icp)
+
+    source.transform(transformation_icp)
+    return source, target
+
+
 def main():
     pcd_r_path, pcd_l_path, filename = get_file_paths()
     pcd_r, pcd_l = load_point_clouds(pcd_r_path, pcd_l_path)
@@ -51,15 +73,28 @@ def main():
     # Applying rotation and translation to pcd_l
     pcd_l.transform(transformation_matrix)
 
-    # Merging the two point clouds
-    merged_pcd = pcd_r + pcd_l
+    # Execute ICP transformation
+    which = input("Do you execute ICP?(yes/no): ")
+
+    if which == "yes" or which == "y":
+        pcd_r, pcd_l = execute_icp(pcd_r, pcd_l)
+        merged_pcd = pcd_r + pcd_l
+        flug = True
+    else:
+        # Merging the two point clouds
+        merged_pcd = pcd_r + pcd_l
+        flug = False
 
     # Displaying result (optional)
     o3d.visualization.draw_geometries([merged_pcd])
 
     # Saving result
-    o3d.io.write_point_cloud(os.path.join(
-        "data", "results", f"{filename}.ply"), merged_pcd)
+    if flug == True:
+        o3d.io.write_point_cloud(os.path.join(
+            "data", "results", f"{filename}_icp.ply"), merged_pcd)
+    else:
+        o3d.io.write_point_cloud(os.path.join(
+            "data", "results", f"{filename}.ply"), merged_pcd)
 
 
 if __name__ == "__main__":
