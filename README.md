@@ -13,7 +13,9 @@ Combine multiple point clouds from multiple Realsense devices through external c
    - Execute `realsense_stereo_calib.py`.
    - Utilize a checkerboard for calibration. A single calibration action is executed with a right-click.
    - It is recommended to capture between 30 to 40 images.
-     <img src="assets\images\calibration.jpg" width = 500 title="Calibration using a checkerboard">
+
+    <img src="assets\images\calibration.jpg" width = 500 title="Calibration using a checkerboard">
+     
    - Enter the checkerboard square size (in cm) into the source code (default is 4.75cm).
 
 2. **Point Cloud Capture**:
