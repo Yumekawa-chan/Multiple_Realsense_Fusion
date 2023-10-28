@@ -8,12 +8,12 @@ Combine multiple point clouds from multiple Realsense devices through external c
 
    - Place two sensors at arbitrary positions.
 
-   ![Sensor Placement](assets\images\sensors.jpg "Example of sensor placement")
+   <img src="assets\images\sensors.jpg" title="Example of sensor placement">
 
    - Execute `realsense_stereo_calib.py`.
    - Utilize a checkerboard for calibration. A single calibration action is executed with a right-click.
    - It is recommended to capture between 30 to 40 images.
-     ![Calibration](assets\images\calibration.jpg "Calibration using a checkerboard")
+     <img src="assets\images\calibration.jpg" title="Calibration using a checkerboard">
    - Enter the checkerboard square size (in cm) into the source code (default is 4.75cm).
 
 2. **Point Cloud Capture**:
@@ -31,4 +31,4 @@ Combine multiple point clouds from multiple Realsense devices through external c
 ## Example of result
 
 It is recommended to adjust minor misalignments using ICP (Iterative Closest Point) matching.
-![result](assets\images\result_sample.png "Example of result")
+<img src="assets\images\result_sample.png" title="Example of result">
